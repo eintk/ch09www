@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}我有话要说{% endblock %}
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" align=center>
+                    <h3>~~宝宝心里苦，宝宝只在这里说~~</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for p in posts%}
+   {% cycle "<div class='row'> <div class='col-md-6'>" "<div class='col-md-6'>"  %}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">[{{p.nickname}}]觉得{{p.mood}}</div>
+                        <div class="panel-body">{{ p.message | linebreaks }}</div>
+                        <div class="penel-footer" align=right><i>
+                            <small>{{p.pub_time}}</small>
+                        </i>
+                        <span class="glyphicon glyphicon-trash" onclick="go_delete({{p.id}})"></span>
+                        </div>
+                    </div>
+    </div>
+    {% cycle  "" "</div>" %}
+    {% endfor %}
+
+</div>
+        {% endblock %}
